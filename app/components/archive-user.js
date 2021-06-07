@@ -5,18 +5,12 @@ import { inject as service } from '@ember/service';
 export default class ArchiveUserComponent extends Component {
     @service store;
 
+    // handle archive button click event
     @action
-    archiveUser(user){
-        // search for user with corresponding user_id in user model.
+    archiveUser(user) {
+        // user.changeValue()
         this.store.findRecord('user', user.id)
-        .then( foundUser => 
-
-            // toggle user's value
-            foundUser.value = !foundUser.value
-        )
-        .catch( _ => 
-            // inform user about error
-            alert(`Sorry, we couldn't ${user.value? 'unarcvhive':'archive'} ${user.name}`)
-        )
+        .then( foundUser =>  foundUser.changeValue())
+        .catch( _ => alert(`Sorry, we couldn't ${user.value? 'unarchive'.toUpperCase(): 'archive'.toUpperCase()} ${user.name.toUpperCase()}`))
     }
 }
