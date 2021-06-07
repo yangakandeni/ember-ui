@@ -1,9 +1,13 @@
 import Model, { attr } from '@ember-data/model';
 
 export default class UserModel extends Model {
+
   @attr('string') name;
   @attr('string') image;
+  @attr('boolean', {defaultValue: false}) value;
 
-  // added value attribute (which is a property of the "server" data)
-  @attr('boolean') value;
+  changeValue(){
+    // toggle user's value
+    this.value = !this.value
+  }
 }
